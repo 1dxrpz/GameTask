@@ -15,6 +15,7 @@ List<IPassanger> players = new List<IPassanger>();
 List<ITransport> cars = new List<ITransport>();
 
 Random random = new Random();
+ITransport GetRandomCar() => cars[random.Next(CARS_COUNT)];
 
 for (int i = 0; i < CARS_COUNT; i++)
 {
@@ -37,6 +38,9 @@ for (int i = 0; i < PLAYERS_COUNT; i++)
 	players.Add(_player);
 }
 
+thread.Join();
+Result();
+
 void MakePlayerSeatCar()
 {
 	int CurrentPlayer = 0;
@@ -54,14 +58,6 @@ void MakePlayerSeatCar()
 			CurrentPlayer++;
 		}
 	}
-}
-
-thread.Join();
-Result();
-
-ITransport GetRandomCar()
-{
-	return cars[random.Next(CARS_COUNT)];
 }
 
 void Result()
